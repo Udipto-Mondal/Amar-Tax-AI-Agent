@@ -698,12 +698,12 @@ HTML_PAGE = """<!DOCTYPE html>
     let lastRawMarkdown = '';
 
     const PRESET_LABELS = [
-      'Example: Software Eng. (Dhaka)',
-      'Edge 1: Minor (16y)',
-      'Edge 4: Below Threshold (Rangpur)',
-      'Edge 3: Excess Investment',
-      'Edge 5: Missing TIN',
-      'Edge 6: Unlisted Profession'
+      'TC1: Example (Dhaka)',
+      'TC2: Minor (16y)',
+      'TC3: Below Threshold (Rangpur)',
+      'TC4: Excess Investment',
+      'TC5: Missing TIN',
+      'TC6: Unlisted Profession'
     ];
 
     function esc(s) {
