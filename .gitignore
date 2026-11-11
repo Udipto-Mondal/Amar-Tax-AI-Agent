@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*/__pycache__/
+*.pyc
+.env
+.ipynb_checkpoints/
+*.log
+test_results_summary.json
+build_notebook.py
+test_crew.py
