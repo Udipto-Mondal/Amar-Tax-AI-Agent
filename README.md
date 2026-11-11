@@ -381,3 +381,4 @@ When recording your demonstration video for submission, use this recommended flo
 
 5. **Conclusion & Wrap-Up (30 seconds)**:
    - Reiterate how all requirements from the assignment PDF (Roles, Context Passing, Custom `@tool`, `output_pydantic`, Fallback DB, Verbose mode, and Markdown + Bangla output) are fully implemented and verified.
+

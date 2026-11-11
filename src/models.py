@@ -73,3 +73,4 @@ class TaxReadinessReport(BaseModel):
     identified_issues: List[str] = Field(default_factory=list, description="All caught errors, flags, or edge cases")
     markdown_table: str = Field(..., description="English Markdown Table formatted strictly as required")
     bangla_summary: str = Field(..., description="3-4 line Bangla summary of the tax readiness report")
+

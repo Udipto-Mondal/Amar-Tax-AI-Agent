@@ -279,3 +279,4 @@ def get_required_documents(
             deduped.append(item)
 
     return deduped, is_general_fallback
+
