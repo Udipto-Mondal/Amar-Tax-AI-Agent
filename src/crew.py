@@ -3,6 +3,8 @@ Amar Tax AI Agent - Crew Orchestration Module
 Assembles the 4-agent CrewAI pipeline with sequential execution and verbose logging.
 """
 
+import asyncio
+import concurrent.futures
 import logging
 from typing import Any, Dict
 from crewai import Crew, Process
@@ -59,6 +61,20 @@ def build_tax_crew(profile: Dict[str, Any], llm=None) -> Crew:
     return crew
 
 
+def _kickoff_sync_safe(crew: Crew):
+    """Run crew.kickoff() safely even when called inside an active asyncio event loop (e.g., Jupyter/Colab)."""
+    try:
+        asyncio.get_running_loop()
+        in_loop = True
+    except RuntimeError:
+        in_loop = False
+
+    if in_loop:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+            return executor.submit(crew.kickoff).result()
+    return crew.kickoff()
+
+
 def run_tax_advisor(profile: Dict[str, Any], llm=None) -> str:
     """
     Executes the Amar Tax advisory crew on a taxpayer profile.
@@ -68,7 +84,7 @@ def run_tax_advisor(profile: Dict[str, Any], llm=None) -> str:
                 f"({profile.get('age')}y, {profile.get('gender')}, {profile.get('location')})")
 
     crew = build_tax_crew(profile=profile, llm=llm)
-    result = crew.kickoff()
+    result = _kickoff_sync_safe(crew)
 
     return str(result)
 
